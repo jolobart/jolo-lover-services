@@ -27,5 +27,10 @@ namespace JoloLoverServices.Services
         {
             this.GetAll().Add(transaction);
         }
+
+        public void Delete(int id)
+        {
+            // Deletes transactions
+        }
     }
 }

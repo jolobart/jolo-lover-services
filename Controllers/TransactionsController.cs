@@ -22,14 +22,6 @@ namespace JoloLoverServices.Controllers
             Console.Write("POSTTTT");
             Transaction hash = JsonSerializer.Deserialize<Transaction>(payload.ToString());
 
-            // int id = int.Parse(hash["id"].ToString());
-            // int userId = int.Parse(hash["userId"].ToString());
-            // int walletId = int.Parse(hash["walletId"].ToString());
-            // float amount = float.Parse(hash["amount"].ToString());
-            // int categoryId = int.Parse(hash["categoryId"].ToString());
-            // string note = hash["notes"].ToString();
-            // string date = hash["dateTime"].ToString();
-
             // var transaction = new Transaction(id, userId, walletId, categoryId, amount, note, date);
 
             _transactionService.Save(hash);

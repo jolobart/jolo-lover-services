@@ -7,5 +7,6 @@ namespace JoloLoverServices.Interfaces
         List<Transaction> GetAll();
         Transaction GetTransactionById(int id);
         void Save(Transaction transaction);
+        void Delete(int id);
     }
 }
