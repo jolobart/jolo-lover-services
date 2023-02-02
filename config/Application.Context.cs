@@ -24,11 +24,6 @@ namespace JoloLoverServices.Conf
         public ApplicationContext()
         {
             this.TransactionLists = new List<Transaction>();
-            this.TransactionItem1 = new Transaction(1, "Food and Beverage", 115.00f, "Jollibee spaghetti and burger steak");
-            this.TransactionItem2 = new Transaction(2, "Transportation", 13.00f, "BGC bus fare");
-
-            this.TransactionLists.Add(this.TransactionItem1);
-            this.TransactionLists.Add(this.TransactionItem2);
         }
 
         public List<Transaction> GetTransactionLists()

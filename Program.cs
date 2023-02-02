@@ -1,3 +1,6 @@
+using JoloLoverServices.Interfaces;
+using JoloLoverServices.Services;
+
 namespace JoloLoverServices
 {
     public class Program
@@ -13,7 +16,10 @@ namespace JoloLoverServices
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            WebApplication app = builder.Build();
+            // Add services here
+            builder.Services.AddScoped<ITransactionService, TransactionService>();
+
+            var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

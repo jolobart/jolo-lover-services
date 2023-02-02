@@ -22,5 +22,10 @@ namespace JoloLoverServices.Services
         {
             return this.GetAll().FirstOrDefault(transaction => transaction.Id == id);
         }
+
+        public void Save(Transaction transaction)
+        {
+            this.GetAll().Add(transaction);
+        }
     }
 }

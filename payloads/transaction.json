@@ -1,0 +1,9 @@
+{
+  "id": 1,
+  "userId": 1,
+  "walletId": 1,
+  "amount": 13,
+  "categoryId": 1,
+  "notes": "BGC bus ticket fare.",
+  "dateTime": "Jan 16"
+}
