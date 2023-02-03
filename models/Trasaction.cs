@@ -2,15 +2,15 @@ namespace JoloLoverServices.Models
 {
     public class Transaction
     {
-        public int Id { get; private set; }
-        public int UserId { get; private set; }
-        public int WalletId { get; private set; }
-        public int CategoryId { get; private set; }
-        public float Amount { get; private set; }
-        public string Notes { get; private set; }
-        public string Date { get; private set; }
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public int WalletId { get; set; }
+        public int CategoryId { get; set; }
+        public float Amount { get; set; }
+        public string? Notes { get; set; }
+        public DateTime DateTime { get; set; }
 
-        public Transaction(int id, int userId, int walletId, int categoryId, float amount, string notes, string date)
+        public Transaction(int id, int userId, int walletId, int categoryId, float amount, string notes, DateTime dateTime)
         {
             this.Id = id;
             this.UserId = userId;
@@ -18,7 +18,12 @@ namespace JoloLoverServices.Models
             this.CategoryId = categoryId;
             this.Amount = amount;
             this.Notes = notes;
-            this.Date = date;
+            this.DateTime = dateTime;
+        }
+
+        public Transaction()
+        {
+
         }
     }
 }

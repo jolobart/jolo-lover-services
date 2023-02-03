@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using JoloLoverServices.Interfaces;
-using JoloLoverServices.Models;
+using JoloLoverServices.WebModels;
+using JoloLoverServices.Extension;
 
 namespace JoloLoverServices.Controllers
 {
@@ -16,19 +17,10 @@ namespace JoloLoverServices.Controllers
         }
 
         [HttpPost("")]
-        public IActionResult Save([FromBody] object payload)
+        public IActionResult Save([FromBody] CreateTransactionWebRequest webRequest)
         {
-            Console.WriteLine(payload);
-            Console.Write("POSTTTT");
-            Transaction hash = JsonSerializer.Deserialize<Transaction>(payload.ToString());
-
-            // var transaction = new Transaction(id, userId, walletId, categoryId, amount, note, date);
-
-            _transactionService.Save(hash);
-
-            Dictionary<string, object> message = new Dictionary<string, object>();
-            message.Add("message", "Ok");
-            return Ok(message);
+            _transactionService.Save(webRequest.ToRequest());
+            return Ok();
         }
 
         JsonSerializerOptions seralizerOptions = new JsonSerializerOptions

@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "GmCvubTk1kzIfwz7j+xX0oXMXlLQn6rDxspAsWROwuvANHb9iTJkzYdqmCdgDDRti59GZjPw/TFId2lsFPuiyg==",
+  "dgSpecHash": "cAkUNmokbyNNR5nNInxLMMNEOApyfR7QpUyo5AaWu/s9aaTygfV77tMg+CWR+IdHDXHR166EGvtafYovb/pL3Q==",
   "success": true,
   "projectFilePath": "C:\\Workspace\\Training\\jolo-lover-services\\jolo-lover-services.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\josep3094\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\josep3094\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\josep3094\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512",
     "C:\\Users\\josep3094\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
     "C:\\Users\\josep3094\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
     "C:\\Users\\josep3094\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",

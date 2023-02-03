@@ -26,3 +26,4 @@ C:\Workspace\Training\jolo-lover-services\obj\Debug\net6.0\jolo-lover-services.p
 C:\Workspace\Training\jolo-lover-services\obj\Debug\net6.0\jolo-lover-services.genruntimeconfig.cache
 C:\Workspace\Training\jolo-lover-services\obj\Debug\net6.0\ref\jolo-lover-services.dll
 C:\Workspace\Training\jolo-lover-services\bin\Debug\net6.0\payloads\transaction.json
+C:\Workspace\Training\jolo-lover-services\bin\Debug\net6.0\Newtonsoft.Json.dll
