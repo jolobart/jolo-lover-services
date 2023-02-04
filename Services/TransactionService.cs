@@ -30,7 +30,7 @@ namespace JoloLoverServices.Services
 
         public void Delete(int id)
         {
-            // Deletes transactions
+    
         }
     }
 }
