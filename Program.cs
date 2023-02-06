@@ -1,5 +1,7 @@
-using JoloLoverServices.Interfaces;
-using JoloLoverServices.Services;
+using Microsoft.EntityFrameworkCore;
+using JoloLoverServices.Data.Interfaces;
+using JoloLoverServices.Data.DataGateway;
+using JoloLoverServices.Data;
 
 namespace JoloLoverServices
 {
@@ -12,12 +14,18 @@ namespace JoloLoverServices
             // Add services to the container.
 
             builder.Services.AddControllers();
+
+            builder.Services.AddDbContext<DataContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("MSSqlConnection"));
+            });
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
             // Add services here
-            builder.Services.AddScoped<ITransactionService, TransactionService>();
+            builder.Services.AddScoped<ITransactionSqlDataGateway, TransactionSqlDataGateway>();
 
             var app = builder.Build();
 

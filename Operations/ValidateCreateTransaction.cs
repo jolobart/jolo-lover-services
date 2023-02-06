@@ -1,13 +1,13 @@
-using JoloLoverServices.WebModels;
-using JoloLoverServices.Models;
+// using JoloLoverServices.WebModels;
+// using JoloLoverServices.Models;
 
-namespace JoloLoverServices.Operations;
+// namespace JoloLoverServices.Operations;
 
-public class ValidateCreateTransaction
-{
-    public static List<ErrorMessage> Execute()
-    {
-        var errorMessages = new List<ErrorMessage>();
-        return errorMessages;
-    }
-}
+// public class ValidateCreateTransaction
+// {
+//     public static List<ErrorMessage> Execute()
+//     {
+//         var errorMessages = new List<ErrorMessage>();
+//         return errorMessages;
+//     }
+// }

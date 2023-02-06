@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Json;
 using JoloLoverServices.Interfaces;
-using JoloLoverServices.WebModels;
-using JoloLoverServices.Extension;
+using JoloLoverServices.WebModels.TransactionWebModels;
+using JoloLoverServices.Controllers.Extensions;
+using JoloLoverServices.Controllers.Extensions.TransactionControllerExtensions;
 
 namespace JoloLoverServices.Controllers
 {
@@ -11,38 +11,38 @@ namespace JoloLoverServices.Controllers
     public class TransactionsController : Controller
     {
         private readonly ITransactionService _transactionService;
+
         public TransactionsController(ITransactionService transactionService)
         {
             _transactionService = transactionService;
         }
 
-        [HttpPost("")]
-        public IActionResult Save([FromBody] CreateTransactionWebRequest webRequest)
+        [HttpPost]
+        public IActionResult UpsertTransaction([FromBody] CreateTransactionWebRequest webRequest)
         {
-            _transactionService.Save(webRequest.ToRequest());
-            return Ok();
+            var response = _transactionService.UpsertTransaction(webRequest.ToRequest());
+            return this.CreateResponse(response);
         }
 
-        JsonSerializerOptions seralizerOptions = new JsonSerializerOptions
+        [HttpPost("list")]
+        public IActionResult Index([FromBody] GetTransactionWebRequest webRequest)
         {
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            WriteIndented = true
-        };
-
-        [HttpGet("")]
-        public IActionResult Index()
-        {
-            var transactionList = _transactionService.GetAll();
-            var payload = JsonSerializer.Serialize(transactionList, seralizerOptions);
-            return Ok(payload);
+            var response = _transactionService.GetAll(webRequest.ToRequest());
+            return this.CreateResponse(response);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetTransactionById(int id)
+        public IActionResult GetTransactionById([FromBody] GetTransactionWebRequest webRequest)
         {
-            var transaction = _transactionService.GetTransactionById(id);
-            var payload = JsonSerializer.Serialize(transaction, seralizerOptions);
-            return Ok(payload);
+            var response = _transactionService.GetTransactionById(webRequest.ToRequest());
+            return this.CreateResponse(response);
+        }
+
+        [HttpDelete]
+        public IActionResult RemoveTransaction([FromBody] RemoveTransactionWebRequest webRequest)
+        {
+            var response = _transactionService.RemoveTransaction(webRequest.ToRequest());
+            return this.CreateResponse(response);
         }
     }
 }

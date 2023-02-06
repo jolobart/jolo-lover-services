@@ -1,12 +1,12 @@
 using JoloLoverServices.Models;
+using JoloLoverServices.Models.Request;
 
-namespace JoloLoverServices.Interfaces
+namespace JoloLoverServices.Interfaces;
+
+public interface ITransactionService
 {
-    public interface ITransactionService
-    {
-        List<Transaction> GetAll();
-        Transaction GetTransactionById(int id);
-        void Save(Transaction transaction);
-        void Delete(int id);
-    }
+    ResponseBase<List<Transaction>> GetAll(GetTransactionRequest request);
+    ResponseBase<Transaction> GetTransactionById(GetTransactionRequest request);
+    ResponseBase<Transaction> UpsertTransaction(Transaction request);
+    ResponseBase<Transaction> RemoveTransaction(RemoveTransactionRequest request);
 }
