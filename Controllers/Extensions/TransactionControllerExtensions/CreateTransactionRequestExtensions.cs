@@ -19,7 +19,7 @@ internal static class CreateTransactionRequestExtensions
                 CategoryId = webRequest.CategoryId,
                 Amount = webRequest.Amount,
                 Notes = webRequest.Notes,
-                DateTime = webRequest.DateTime
+                DateTime = new DateTime(webRequest.DateTime)
             };
         }
 

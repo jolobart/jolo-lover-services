@@ -27,9 +27,7 @@ public class TransactionSqlDataGateway : ITransactionSqlDataGateway
 
     public Transaction Upsert(Transaction transaction)
     {
-        var transactionEntity = transaction;
-
-        if (transaction.Id != null)
+        if (transaction.Id == null)
         {
             _dataContext.Transactions.Add(transaction);
         }

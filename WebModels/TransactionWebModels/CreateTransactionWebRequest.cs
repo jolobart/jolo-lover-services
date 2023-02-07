@@ -30,5 +30,5 @@ public class CreateTransactionWebRequest
 
     [JsonRequired]
     [JsonProperty("dateTime")]
-    public DateTime DateTime { get; set; }
+    public long DateTime { get; set; }
 }

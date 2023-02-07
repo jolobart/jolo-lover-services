@@ -6,7 +6,7 @@ namespace JoloLoverServices.Validations.TransactionSpecifications;
 internal class CreateTransactionSpecification : Specification<Transaction>
 {
     private static Specification<Transaction> spec = new IdIsNotNullOrEmptySpecification()
-        .And(new UserIdIsNotNullOrEmptySpecification())
+        .Or(new UserIdIsNotNullOrEmptySpecification())
         .And(new WalletIdIsNotNullOrEmptySpecification())
         .And(new CategoryIdIsNotNullOrEmptySpecification())
         .And(new AmountIsNotLowerThanZeroSpecification());
