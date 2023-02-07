@@ -24,14 +24,14 @@ public class CategoriesController : Controller
         return this.CreateResponse(response);
     }
 
-    [HttpPost("{id}")]
-    public IActionResult Index([FromRoute] int id)
+    [HttpGet("{id}")]
+    public IActionResult GetAllCategoriesByUserId([FromRoute] int id)
     {
         var response = _categoryService.GetAll(id);
         return this.CreateResponse(response);
     }
 
-    [HttpGet("{id}")]
+    [HttpPost("{id}")]
     public IActionResult GetCategoryById([FromBody] GetCategoryWebRequest webRequest)
     {
         var response = _categoryService.GetCategoryById(webRequest.ToRequest());

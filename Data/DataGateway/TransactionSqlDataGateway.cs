@@ -13,7 +13,7 @@ public class TransactionSqlDataGateway : ITransactionSqlDataGateway
         _dataContext = dataContext;
     }
 
-    public List<Transaction> GetAll(GetTransactionRequest request)
+    public List<Transaction> GetAll(GetAllTransactionRequest request)
     {
         return _dataContext.Transactions
         .Where(t => t.UserId == request.UserId && t.WalletId == request.WalletId)

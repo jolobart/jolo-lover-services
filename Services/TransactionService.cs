@@ -36,7 +36,7 @@ public class TransactionService : ITransactionService
             return response.AsInternalApiError(e);
         }
     }
-    public ResponseBase<List<Transaction>> GetAll(GetTransactionRequest request)
+    public ResponseBase<List<Transaction>> GetAll(GetAllTransactionRequest request)
     {
         var response = new ResponseBase<List<Transaction>>();
         ICollection<string> errors = new List<string>();

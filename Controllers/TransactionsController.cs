@@ -25,13 +25,13 @@ namespace JoloLoverServices.Controllers
         }
 
         [HttpPost("list")]
-        public IActionResult Index([FromBody] GetTransactionWebRequest webRequest)
+        public IActionResult GetAllTransactions([FromBody] GetAllTransactionWebRequest webRequest)
         {
             var response = _transactionService.GetAll(webRequest.ToRequest());
             return this.CreateResponse(response);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet]
         public IActionResult GetTransactionById([FromBody] GetTransactionWebRequest webRequest)
         {
             var response = _transactionService.GetTransactionById(webRequest.ToRequest());
