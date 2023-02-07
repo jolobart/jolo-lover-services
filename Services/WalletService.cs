@@ -18,21 +18,92 @@ public class WalletService : IWalletService
 
     public ResponseBase<List<Wallet>> GetAll(int id)
     {
-        throw new NotImplementedException();
+        var response = new ResponseBase<List<Wallet>>();
+        ICollection<string> errors = new List<string>();
+
+        try
+        {
+            if (id.IsValid(ref errors))
+            {
+                var result = _dataGateway.GetAll(id);
+                return response.AsData(result);
+            }
+
+            return response.AsInvalidRequestError(errors);
+        }
+        catch (Exception e)
+        {
+            return response.AsInternalApiError(e);
+        }
     }
 
     public ResponseBase<Wallet> GetWalletById(GetWalletRequest request)
     {
-        throw new NotImplementedException();
+        var response = new ResponseBase<Wallet>();
+        ICollection<string> errors = new List<string>();
+
+        try
+        {
+            if (request.IsValid(ref errors))
+            {
+                var result = _dataGateway.GetWalletById(request.Id.Value, request.UserId.Value);
+                return response.AsData(result);
+            }
+
+            return response.AsInvalidRequestError(errors);
+        }
+        catch (Exception e)
+        {
+            return response.AsInternalApiError(e);
+        }
     }
 
     public ResponseBase<Wallet> RemoveWallet(RemoveWalletRequest request)
     {
-        throw new NotImplementedException();
+        var response = new ResponseBase<Wallet>();
+        ICollection<string> errors = new List<string>();
+
+        try
+        {
+            if (request.IsValid(ref errors))
+            {
+                var walletResponse = GetWalletById(request.ToGetWalletRequest(request.Id.Value, request.UserId.Value));
+
+                if (walletResponse.Succeeded && walletResponse.Data != null)
+                {
+                    var result = _dataGateway.Delete(walletResponse.Data);
+                    return response.AsData(result);
+                }
+
+                return walletResponse;
+            }
+
+            return response.AsInvalidRequestError(errors);
+        }
+        catch (Exception e)
+        {
+            return response.AsInternalApiError(e);
+        }
     }
 
     public ResponseBase<Wallet> UpsertWallet(Wallet request)
     {
-        throw new NotImplementedException();
+        var response = new ResponseBase<Wallet>();
+        ICollection<string> errors = new List<string>();
+
+        try
+        {
+            if (request.IsValid(ref errors))
+            {
+                var result = _dataGateway.Upsert(request);
+                return response.AsData(result, HttpStatusCode.Created);
+            }
+
+            return response.AsInvalidRequestError(errors);
+        }
+        catch (Exception e)
+        {
+            return response.AsInternalApiError(e);
+        }
     }
 }

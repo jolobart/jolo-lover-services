@@ -6,7 +6,7 @@ namespace JoloLoverServices.Validations.WalletSpecifications;
 internal class UpsertWalletSpecification : Specification<Wallet>
 {
     private static Specification<Wallet> spec = new IdIsNotNullOrEmptySpecification()
-        .And(new UserIdIsNotNullOrEmptySpecification())
+        .Or(new UserIdIsNotNullOrEmptySpecification())
         .And(new CurrencyIsNotNullOrEmptySpecification())
         .And(new NameIsNotNullOrEmptySpecification());
 
