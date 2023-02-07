@@ -4,7 +4,8 @@ public class Transaction
 {
     public int? Id { get; set; }
     public int? UserId { get; set; }
-    public int? WalletId { get; set; }
+    public int WalletId { get; set; }
+    public Wallet Wallet { get; set; }
     public int? CategoryId { get; set; }
     public Category Category { get; set; }
     public float Amount { get; set; }

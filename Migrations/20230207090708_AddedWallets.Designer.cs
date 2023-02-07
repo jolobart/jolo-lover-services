@@ -4,6 +4,7 @@ using JoloLoverServices.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace jololoverservices.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230207090708_AddedWallets")]
+    partial class AddedWallets
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,7 +72,7 @@ namespace jololoverservices.Migrations
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<int>("WalletId")
+                    b.Property<int?>("WalletId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -114,15 +117,11 @@ namespace jololoverservices.Migrations
                         .WithMany("Transactions")
                         .HasForeignKey("CategoryId");
 
-                    b.HasOne("JoloLoverServices.Models.Wallet", "Wallet")
+                    b.HasOne("JoloLoverServices.Models.Wallet", null)
                         .WithMany("Transactions")
-                        .HasForeignKey("WalletId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("WalletId");
 
                     b.Navigation("Category");
-
-                    b.Navigation("Wallet");
                 });
 
             modelBuilder.Entity("JoloLoverServices.Models.Category", b =>
