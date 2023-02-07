@@ -29,10 +29,12 @@ public class Program
         // Add dataGateway here
         builder.Services.AddScoped<ITransactionSqlDataGateway, TransactionSqlDataGateway>();
         builder.Services.AddScoped<ICategorySqlDataGateway, CategorySqlDataGateway>();
+        builder.Services.AddScoped<IWalletSqlDataGateway, WalletSqlDataGateway>();
 
         // Add services here
         builder.Services.AddScoped<ITransactionService, TransactionService>();
         builder.Services.AddScoped<ICategoryService, CategoryService>();
+        builder.Services.AddScoped<IWalletService, WalletService>();
 
 
         var app = builder.Build();
