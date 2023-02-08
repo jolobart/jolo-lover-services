@@ -83,3 +83,5 @@ C:\Workspace\Training\jolo-lover-services\bin\Debug\net6.0\runtimes\win\lib\nets
 C:\Workspace\Training\jolo-lover-services\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
 C:\Workspace\Training\jolo-lover-services\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 C:\Workspace\Training\jolo-lover-services\bin\Debug\net6.0\payloads\category.json
+C:\Workspace\Training\jolo-lover-services\bin\Debug\net6.0\BCrypt.Net-Next.dll
+C:\Workspace\Training\jolo-lover-services\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

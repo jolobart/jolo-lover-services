@@ -9,7 +9,7 @@ public class ResponseBase<T>
     public int Code { get; set; }
     public string? Message { get; set; }
     public string? Type { get; set; }
-
+    
     public ResponseBase()
     {
         this.Succeeded = true;
