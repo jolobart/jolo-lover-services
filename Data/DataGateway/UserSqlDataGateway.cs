@@ -12,8 +12,20 @@ public class UserSqlDataGateway : IUserSqlDataGateway
         _dataContext = dataContext;
     }
 
+    public User FindById(int id)
+    {
+        return _dataContext.Users.SingleOrDefault(u => u.Id == id);
+    }
+
     public User GetUserByEmail(string email)
     {
         return _dataContext.Users.SingleOrDefault(u => u.Email == email);
+    }
+
+    public User Save(User user)
+    {
+        _dataContext.Users.Add(user);
+        _dataContext.SaveChanges();
+        return _dataContext.Users.Find(user.Id);
     }
 }

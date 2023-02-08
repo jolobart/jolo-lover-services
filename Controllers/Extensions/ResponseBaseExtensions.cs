@@ -10,6 +10,15 @@ public static class ResponseBaseExtensions
         if (response.Succeeded)
         {
             var data = mappedData ?? response.Data;
+
+            if (response.AccessToken != null)
+            {
+                return new
+                {
+                    BearerToken = response.AccessToken
+                };
+            }
+
             if (data == null)
             {
                 return string.Empty;

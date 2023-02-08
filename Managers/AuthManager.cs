@@ -1,6 +1,8 @@
+using System.Net;
 using JoloLoverServices.Factories.Interfaces;
 using JoloLoverServices.Interfaces;
 using JoloLoverServices.Managers.Interfaces;
+using JoloLoverServices.Models;
 using JoloLoverServices.Models.Request;
 using JoloLoverServices.Models.Response;
 
@@ -19,8 +21,11 @@ internal class AuthManager : IAuthManager
         _tokenFactory = tokenFactory;
     }
 
-    public AuthorizeResponse PasswordLogin(PasswordLoginRequest request)
+    public ResponseBase<AuthorizeResponse> PasswordLogin(PasswordLoginRequest request)
     {
+        var response = new ResponseBase<AuthorizeResponse>();
+        ICollection<string> errors = new List<string>();
+
         var passwordLogin = _dataService.PasswordLogin(request);
 
         if (passwordLogin.Succeeded && passwordLogin.Data != null)
@@ -28,10 +33,10 @@ internal class AuthManager : IAuthManager
             var user = passwordLogin.Data;
             var claims = _claimsFactory.CreateClaims(user);
             var tokens = _tokenFactory.CreateAuthTokens(claims);
-            
-            return AuthorizeResponse.Success(tokens.AccessToken, tokens.RefreshToken);
-        }
 
-        return new AuthorizeResponse("invalid password");
+            return response.Success(tokens.AccessToken, tokens.RefreshToken, HttpStatusCode.Created);
+        }
+        errors.Add("invalid password");
+        return response.AsInvalidRequestError(errors);
     }
 }

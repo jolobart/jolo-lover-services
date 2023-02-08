@@ -16,6 +16,27 @@ public class UserService : IUserService
         _dataGateway = dataGateway;
     }
 
+    public ResponseBase<User> GetUserById(int id)
+    {
+        var response = new ResponseBase<User>();
+        ICollection<string> errors = new List<string>();
+
+        try
+        {
+            if (id.IsValid(ref errors))
+            {
+                var user = _dataGateway.FindById(id);
+                return response.AsData(user);
+            }
+
+            return response.AsInvalidRequestError(errors);
+        }
+        catch (Exception e)
+        {
+            return response.AsInternalApiError(e);
+        }
+    }
+
     public ResponseBase<User> PasswordLogin(PasswordLoginRequest request)
     {
         var response = new ResponseBase<User>();
@@ -37,6 +58,27 @@ public class UserService : IUserService
             }
 
             errors.Add("no user found associated with the email address");
+            return response.AsInvalidRequestError(errors);
+        }
+        catch (Exception e)
+        {
+            return response.AsInternalApiError(e);
+        }
+    }
+
+    public ResponseBase<User> Register(RegisterRequest request)
+    {
+        var response = new ResponseBase<User>();
+        ICollection<string> errors = new List<string>();
+
+        try
+        {
+            if (request.IsValid(ref errors))
+            {
+                var user = _dataGateway.Save(request.ToUserRequest());
+                return response.AsData(user);
+            }
+
             return response.AsInvalidRequestError(errors);
         }
         catch (Exception e)

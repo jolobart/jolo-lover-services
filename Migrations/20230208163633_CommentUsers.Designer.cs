@@ -4,6 +4,7 @@ using JoloLoverServices.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace jololoverservices.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230208163633_CommentUsers")]
+    partial class CommentUsers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -130,8 +133,6 @@ namespace jololoverservices.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("Wallets");
                 });
 
@@ -152,23 +153,9 @@ namespace jololoverservices.Migrations
                     b.Navigation("Wallet");
                 });
 
-            modelBuilder.Entity("JoloLoverServices.Models.Wallet", b =>
-                {
-                    b.HasOne("JoloLoverServices.Models.User", null)
-                        .WithMany("Wallets")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("JoloLoverServices.Models.Category", b =>
                 {
                     b.Navigation("Transactions");
-                });
-
-            modelBuilder.Entity("JoloLoverServices.Models.User", b =>
-                {
-                    b.Navigation("Wallets");
                 });
 
             modelBuilder.Entity("JoloLoverServices.Models.Wallet", b =>

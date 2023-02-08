@@ -9,7 +9,9 @@ public class ResponseBase<T>
     public int Code { get; set; }
     public string? Message { get; set; }
     public string? Type { get; set; }
-    
+    public string? AccessToken { get; set; }
+    public string? RefreshToken { get; set; }
+
     public ResponseBase()
     {
         this.Succeeded = true;
@@ -19,6 +21,14 @@ public class ResponseBase<T>
     public ResponseBase(T result, HttpStatusCode code)
     {
         this.Data = result;
+        this.Succeeded = true;
+        this.Code = (int)code;
+    }
+
+    public ResponseBase(string accessToken, string refreshToken, HttpStatusCode code = HttpStatusCode.OK)
+    {
+        this.RefreshToken = refreshToken;
+        this.AccessToken = accessToken;
         this.Succeeded = true;
         this.Code = (int)code;
     }
@@ -45,6 +55,16 @@ public class ResponseBase<T>
         this.Message = exception.InnerException?.Message ?? exception.Message;
         this.Type = "Invalid request error";
         this.Code = (int)HttpStatusCode.InternalServerError;
+    }
+
+
+    public ResponseBase<T> Success(string accessToken, string refreshToken, HttpStatusCode code = HttpStatusCode.OK)
+    {
+        this.RefreshToken = refreshToken;
+        this.AccessToken = accessToken;
+        this.Succeeded = true;
+        this.Code = (int)code;
+        return this;
     }
 
     public ResponseBase<T> AsData(T result, HttpStatusCode code = HttpStatusCode.OK)
