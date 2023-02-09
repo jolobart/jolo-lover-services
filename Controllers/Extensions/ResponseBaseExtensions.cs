@@ -15,7 +15,7 @@ public static class ResponseBaseExtensions
             {
                 return new
                 {
-                    BearerToken = response.AccessToken
+                    Token = response.AccessToken
                 };
             }
 

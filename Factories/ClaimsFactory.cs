@@ -10,9 +10,7 @@ public class ClaimsFactory : IClaimsFactory
     {
         var claims = new List<Claim>
     {
-        new Claim("user.id", user.Id.ToString()),
-        new Claim("user.name", user.Name),
-        new Claim(ClaimTypes.Email, user.Email)
+        new Claim("id", user.Id.ToString())
     };
 
         ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);

@@ -4,6 +4,7 @@ using JoloLoverServices.Controllers.Extensions;
 using JoloLoverServices.Controllers.Extensions.AuthControllerExtensions;
 using JoloLoverServices.Managers.Interfaces;
 using JoloLoverServices.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JoloLoverServices.Controllers;
 
@@ -20,6 +21,7 @@ public class AuthController : Controller
         _dataService = userService;
     }
 
+    [AllowAnonymous]
     [HttpPost]
     [Route("login")]
     public IActionResult PasswordLogin([FromBody] PasswordLoginWebRequest request)
@@ -28,6 +30,7 @@ public class AuthController : Controller
         return this.CreateResponse(response);
     }
 
+    [AllowAnonymous]
     [HttpPost]
     [Route("register")]
     public IActionResult Register([FromBody] RegisterWebRequest request)
@@ -36,6 +39,7 @@ public class AuthController : Controller
         return this.CreateResponse(response);
     }
 
+    [Authorize]
     [HttpPost]
     [Route("{id}")]
     public IActionResult GetUserById([FromRoute] int id)

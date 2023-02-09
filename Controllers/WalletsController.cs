@@ -3,6 +3,7 @@ using JoloLoverServices.Interfaces;
 using JoloLoverServices.WebModels.WalletWebModels;
 using JoloLoverServices.Controllers.Extensions;
 using JoloLoverServices.Controllers.Extensions.WalletControllerExtensions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JoloLoverServices.Controllers;
 
@@ -17,6 +18,7 @@ public class WalletsController : Controller
         _walletService = walletService;
     }
 
+    [Authorize]
     [HttpPost]
     public IActionResult UpsertWallet([FromBody] WalletWebRequest webRequest)
     {
@@ -24,6 +26,7 @@ public class WalletsController : Controller
         return this.CreateResponse(response);
     }
 
+    [Authorize]
     [HttpGet("{id}")]
     public IActionResult GetAllWallet([FromRoute] int id)
     {
@@ -31,6 +34,7 @@ public class WalletsController : Controller
         return this.CreateResponse(response);
     }
 
+    [Authorize]
     [HttpPost("{id}")]
     public IActionResult GetWalletById([FromBody] GetWalletWebRequest webRequest)
     {
@@ -38,6 +42,7 @@ public class WalletsController : Controller
         return this.CreateResponse(response);
     }
 
+    [Authorize]
     [HttpDelete]
     public IActionResult RemoveWallet([FromBody] RemoveWalletWebRequest webRequest)
     {
