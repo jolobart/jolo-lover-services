@@ -6,5 +6,6 @@ public class User
     public string Name { get; set; }
     public string Email { get; set; }
     public string PasswordHash { get; set; }
+    public int? SelectedWalletId { get; set; }
     public List<Wallet> Wallets { get; set; }
 }

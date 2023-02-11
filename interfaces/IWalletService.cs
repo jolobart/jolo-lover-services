@@ -9,4 +9,5 @@ public interface IWalletService
     ResponseBase<Wallet> GetWalletById(GetWalletRequest request);
     ResponseBase<Wallet> UpsertWallet(Wallet request);
     ResponseBase<Wallet> RemoveWallet(RemoveWalletRequest request);
+    ResponseBase<Wallet> SelectWallet(SelectedWalletRequest request);
 }

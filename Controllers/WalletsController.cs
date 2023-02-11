@@ -49,4 +49,12 @@ public class WalletsController : Controller
         var response = _walletService.RemoveWallet(webRequest.ToRequest());
         return this.CreateResponse(response);
     }
+
+    [Authorize]
+    [HttpPut]
+    public IActionResult SelectWallet([FromBody] SelectedWalletWebRequest webRequest)
+    {
+        var response = _walletService.SelectWallet(webRequest.ToRequest());
+        return this.CreateResponse(response);
+    }
 }

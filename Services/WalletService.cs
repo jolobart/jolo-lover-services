@@ -106,4 +106,25 @@ public class WalletService : IWalletService
             return response.AsInternalApiError(e);
         }
     }
+
+    public ResponseBase<Wallet> SelectWallet(SelectedWalletRequest request)
+    {
+        var response = new ResponseBase<Wallet>();
+        ICollection<string> errors = new List<string>();
+
+        try
+        {
+            if (request.IsValid(ref errors))
+            {
+                var result = _dataGateway.SelectWallet(request);
+                return response.AsData(result);
+            }
+
+            return response.AsInvalidRequestError(errors);
+        }
+        catch (Exception e)
+        {
+            return response.AsInternalApiError(e);
+        }
+    }
 }
