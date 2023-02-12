@@ -58,24 +58,17 @@ public class WalletService : IWalletService
         }
     }
 
-    public ResponseBase<Wallet> RemoveWallet(RemoveWalletRequest request)
+    public ResponseBase<Wallet> RemoveWallet(int id)
     {
         var response = new ResponseBase<Wallet>();
         ICollection<string> errors = new List<string>();
 
         try
         {
-            if (request.IsValid(ref errors))
+            if (id.IsValid(ref errors))
             {
-                var walletResponse = GetWalletById(request.ToGetWalletRequest(request.Id.Value, request.UserId.Value));
-
-                if (walletResponse.Succeeded && walletResponse.Data != null)
-                {
-                    var result = _dataGateway.Delete(walletResponse.Data);
-                    return response.AsData(result);
-                }
-
-                return walletResponse;
+                var result = _dataGateway.Delete(id);
+                return response.AsData(result);
             }
 
             return response.AsInvalidRequestError(errors);

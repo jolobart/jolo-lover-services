@@ -8,6 +8,6 @@ public interface IWalletSqlDataGateway
     List<Wallet> GetAll(int id);
     Wallet GetWalletById(int id, int userId);
     Wallet Upsert(Wallet wallet);
-    Wallet Delete(Wallet wallet);
+    Wallet Delete(int id);
     Wallet SelectWallet(SelectedWalletRequest request);
 }

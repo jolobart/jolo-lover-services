@@ -43,10 +43,10 @@ public class WalletsController : Controller
     }
 
     [Authorize]
-    [HttpDelete]
-    public IActionResult RemoveWallet([FromBody] RemoveWalletWebRequest webRequest)
+    [HttpDelete("{id}")]
+    public IActionResult RemoveWallet([FromRoute] int id)
     {
-        var response = _walletService.RemoveWallet(webRequest.ToRequest());
+        var response = _walletService.RemoveWallet(id);
         return this.CreateResponse(response);
     }
 

@@ -15,8 +15,9 @@ public class WalletSqlDataGateway : IWalletSqlDataGateway
         _userSqlDataGateway = userSqlDataGateway;
     }
 
-    public Wallet Delete(Wallet wallet)
+    public Wallet Delete(int id)
     {
+        Wallet wallet = _dataContext.Wallets.SingleOrDefault(w => w.Id == id);
         _dataContext.Wallets.Remove(wallet);
         _dataContext.SaveChanges();
         return wallet;
