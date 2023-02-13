@@ -78,24 +78,19 @@ public class TransactionService : ITransactionService
         }
     }
 
-    public ResponseBase<Transaction> RemoveTransaction(RemoveTransactionRequest request)
+    public ResponseBase<Transaction> RemoveTransaction(int id)
     {
         var response = new ResponseBase<Transaction>();
         ICollection<string> errors = new List<string>();
 
         try
         {
-            if (request.IsValid(ref errors))
+            if (id.IsValid(ref errors))
             {
-                var transactionResponse = GetTransactionById(request.ToGetTransactionRequest(request.Id.Value, request.UserId.Value, request.WalletId.Value));
 
-                if (transactionResponse.Succeeded && transactionResponse.Data != null)
-                {
-                    var result = _dataGateway.Delete(transactionResponse.Data);
-                    return response.AsData(result);
-                }
+                var result = _dataGateway.Delete(id);
+                return response.AsData(result);
 
-                return transactionResponse;
             }
 
             return response.AsInvalidRequestError(errors);

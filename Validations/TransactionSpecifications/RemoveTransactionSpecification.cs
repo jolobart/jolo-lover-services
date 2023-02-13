@@ -3,13 +3,11 @@ using JoloLoverServices.Validations.TransactionSpecifications.RemoveTransactionS
 
 namespace JoloLoverServices.Validations.TransactionSpecifications;
 
-internal class RemoveTransactionSpecification : Specification<RemoveTransactionRequest>
+internal class RemoveTransactionSpecification : Specification<int>
 {
-    private static Specification<RemoveTransactionRequest> spec = new IdIsNotNullOrEmptySpecification()
-        .And(new UserIdIsNotNullOrEmptySpecification())
-        .And(new WalletIdIsNotNullOrEmptySpecification());
+    private static Specification<int> spec = new IdIsNotNullOrEmptySpecification();
 
-    public override bool IsSatisfiedBy(RemoveTransactionRequest entity, ref ICollection<string> errors)
+    public override bool IsSatisfiedBy(int entity, ref ICollection<string> errors)
     {
         return spec.IsSatisfiedBy(entity, ref errors);
     }

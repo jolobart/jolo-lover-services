@@ -38,10 +38,10 @@ public class CategoriesController : Controller
         return this.CreateResponse(response);
     }
 
-    [HttpDelete]
-    public IActionResult RemoveCategory([FromBody] RemoveCategoryWebRequest webRequest)
+    [HttpDelete("{id}")]
+    public IActionResult RemoveCategory([FromRoute] int id)
     {
-        var response = _categoryService.RemoveCategory(webRequest.ToRequest());
+        var response = _categoryService.RemoveCategory(id);
         return this.CreateResponse(response);
     }
 }

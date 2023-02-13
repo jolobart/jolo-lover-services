@@ -58,24 +58,17 @@ public class CategoryService : ICategoryService
         }
     }
 
-    public ResponseBase<Category> RemoveCategory(RemoveCategoryRequest request)
+    public ResponseBase<Category> RemoveCategory(int id)
     {
         var response = new ResponseBase<Category>();
         ICollection<string> errors = new List<string>();
 
         try
         {
-            if (request.IsValid(ref errors))
+            if (id.IsValid(ref errors))
             {
-                var categoryResponse = GetCategoryById(request.ToGetCategoryRequest(request.Id.Value, request.UserId.Value));
-
-                if (categoryResponse.Succeeded && categoryResponse.Data != null)
-                {
-                    var result = _dataGateway.Delete(categoryResponse.Data);
-                    return response.AsData(result);
-                }
-
-                return categoryResponse;
+                var result = _dataGateway.Delete(id);
+                return response.AsData(result);
             }
 
             return response.AsInvalidRequestError(errors);

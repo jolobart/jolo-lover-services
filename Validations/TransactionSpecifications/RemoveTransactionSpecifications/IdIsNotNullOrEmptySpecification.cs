@@ -2,11 +2,11 @@ using JoloLoverServices.Models.Request;
 
 namespace JoloLoverServices.Validations.TransactionSpecifications.RemoveTransactionSpecifications;
 
-internal class IdIsNotNullOrEmptySpecification : Specification<RemoveTransactionRequest>
+internal class IdIsNotNullOrEmptySpecification : Specification<int>
 {
-    public override bool IsSatisfiedBy(RemoveTransactionRequest entity, ref ICollection<string> errors)
+    public override bool IsSatisfiedBy(int entity, ref ICollection<string> errors)
     {
-        var result = entity.Id != null;
+        var result = entity != null;
 
         if (!result)
         {

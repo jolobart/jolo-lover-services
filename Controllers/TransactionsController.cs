@@ -38,10 +38,10 @@ namespace JoloLoverServices.Controllers
             return this.CreateResponse(response);
         }
 
-        [HttpDelete]
-        public IActionResult RemoveTransaction([FromBody] RemoveTransactionWebRequest webRequest)
+        [HttpDelete("{id}")]
+        public IActionResult RemoveTransaction([FromRoute] int id)
         {
-            var response = _transactionService.RemoveTransaction(webRequest.ToRequest());
+            var response = _transactionService.RemoveTransaction(id);
             return this.CreateResponse(response);
         }
     }

@@ -7,5 +7,5 @@ public interface ICategorySqlDataGateway
     List<Category> GetAll(int id);
     Category GetCategoryById(int id, int userId);
     Category Upsert(Category category);
-    Category Delete(Category category);
+    Category Delete(int id);
 }

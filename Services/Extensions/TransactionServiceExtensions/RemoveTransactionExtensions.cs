@@ -5,7 +5,7 @@ namespace JoloLoverServices.Services.Extension.TransactionServiceExtensions;
 
 internal static class RemoveTransactionExtensions
 {
-    public static bool IsValid(this RemoveTransactionRequest request, ref ICollection<string> errors)
+    public static bool IsValid(this int request, ref ICollection<string> errors)
     {
         var spec = new RemoveTransactionSpecification();
         var result = spec.IsSatisfiedBy(request, ref errors);

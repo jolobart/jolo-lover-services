@@ -12,8 +12,9 @@ public class CategorySqlDataGateway : ICategorySqlDataGateway
         _dataContext = dataContext;
     }
 
-    public Category Delete(Category category)
+    public Category Delete(int id)
     {
+        var category = _dataContext.Categories.SingleOrDefault(c => c.Id == id);
         _dataContext.Categories.Remove(category);
         _dataContext.SaveChanges();
         return category;

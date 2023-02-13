@@ -40,8 +40,9 @@ public class TransactionSqlDataGateway : ITransactionSqlDataGateway
         return _dataContext.Transactions.Find(transaction.Id);
     }
 
-    public Transaction Delete(Transaction transaction)
+    public Transaction Delete(int id)
     {
+        var transaction = _dataContext.Transactions.SingleOrDefault(t => t.Id == id);
         _dataContext.Transactions.Remove(transaction);
         _dataContext.SaveChanges();
         return transaction;

@@ -8,5 +8,5 @@ public interface ITransactionSqlDataGateway
     List<Transaction> GetAll(GetAllTransactionRequest request);
     Transaction GetTransactionById(int id, int userId, int walletId);
     Transaction Upsert(Transaction transaction);
-    Transaction Delete(Transaction transaction);
+    Transaction Delete(int id);
 }
